@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { dummyResumeData } from '../assets/assets'
 import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react'
 import PersonalInfoForm from '../components/PersonalInfoForm'
+import ResumePreview from '../components/ResumePreview'
 const ResumeBuilder = () => {
 
   const { resumeId } = useParams()
@@ -97,7 +98,7 @@ const ResumeBuilder = () => {
               {/* form content */}
               <div className='space-y-6'>
                 {activeSection.id === 'personal' && (
-                 <PersonalInfoForm data={resumeData.personal_info} onChange={(data)=>setResumeData(prev=>({...prev,personal_info:data}))} removeBackground={removeBackground} setRemoveBackground={setRemoveBackground}/>
+                  <PersonalInfoForm data={resumeData.personal_info} onChange={(data) => setResumeData(prev => ({ ...prev, personal_info: data }))} removeBackground={removeBackground} setRemoveBackground={setRemoveBackground} />
                 )}
 
               </div>
@@ -114,6 +115,7 @@ const ResumeBuilder = () => {
             </div>
 
             {/* -------resume preview ----- */}
+            <ResumePreview data={resumeData} template={resumeData.template} accentColor={resumeData.accent_color} />
 
 
           </div>
