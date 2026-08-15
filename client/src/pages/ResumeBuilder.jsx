@@ -9,6 +9,7 @@ import ColorPicker from '../components/ColorPicker'
 import ProfessionalSummaryForm from '../components/ProfessionalSummaryForm'
 import ExperienceForm from '../components/ExperienceForm'
 import EducationForm from '../components/EducationForm'
+import ProjectForm from '../components/ProjectForm'
 const ResumeBuilder = () => {
 
   const { resumeId } = useParams()
@@ -79,8 +80,8 @@ const ResumeBuilder = () => {
               <div className='flex justify-between  items-center mb-6 border-b border-gray-300 py-1'>
 
                 <div className='flex items-center gap-2' >
-                    <TemplateSelector selectedTemplate={resumeData.template} onChange={(template)=>setResumeData(prev=>({...prev,template}))}/>
-                      <ColorPicker selectedColor={resumeData.accent_color} onChange={(color)=>setResumeData(prev=>({...prev,accent_color:color}))}/>
+                  <TemplateSelector selectedTemplate={resumeData.template} onChange={(template) => setResumeData(prev => ({ ...prev, template }))} />
+                  <ColorPicker selectedColor={resumeData.accent_color} onChange={(color) => setResumeData(prev => ({ ...prev, accent_color: color }))} />
                 </div>
 
                 <div className='flex items-center'>
@@ -111,22 +112,27 @@ const ResumeBuilder = () => {
                   <PersonalInfoForm data={resumeData.personal_info} onChange={(data) => setResumeData(prev => ({ ...prev, personal_info: data }))} removeBackground={removeBackground} setRemoveBackground={setRemoveBackground} />
                 )}
                 {
-                  activeSection.id==="summary" &&(
-                    <ProfessionalSummaryForm data={resumeData.professional_summary} onChange={(data)=>setResumeData(prev=>({...prev,professional_summary:data}))}
-                    setResumeData={setResumeData}/>
+                  activeSection.id === "summary" && (
+                    <ProfessionalSummaryForm data={resumeData.professional_summary} onChange={(data) => setResumeData(prev => ({ ...prev, professional_summary: data }))}
+                      setResumeData={setResumeData} />
                   )
                 }
                 {
-                  activeSection.id==="experience" &&(
-                    <ExperienceForm data={resumeData.experience} onChange={(data)=>setResumeData(prev=>({...prev,experience:data}))}/>
+                  activeSection.id === "experience" && (
+                    <ExperienceForm data={resumeData.experience} onChange={(data) => setResumeData(prev => ({ ...prev, experience: data }))} />
+                  )
+                }
+                {
+                  activeSection.id === "education" && (
+                    <EducationForm data={resumeData.education} onChange={(data) => setResumeData(prev => ({ ...prev, education: data }))} />
                   )
                 }
                  {
-                  activeSection.id==="education" &&(
-                    <EducationForm data={resumeData.education} onChange={(data)=>setResumeData(prev=>({...prev,education:data}))}/>
+                  activeSection.id === "projects" && (
+                    <ProjectForm data={resumeData.project} onChange={(data) => setResumeData(prev => ({ ...prev, project: data }))} />
                   )
                 }
-               
+
 
               </div>
 
