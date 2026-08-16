@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import User from "./models/User.js";
 import bcrypt from 'bcrypt';
+import Resume from "../models/resume.js";
 
 const generateToken=(userId)=>{
     const token=jwt.sign({userId},process.env.JWT_SECRET,{expiresIn: '7d'})
@@ -10,7 +11,7 @@ const generateToken=(userId)=>{
 
 // controller for user reegistration
 // POST:/api/users/register
-export const registerUser=async(req,res){
+export const registerUser=async(req,res)=>{
         try {
             const {name,email,password}=req.body;
 
@@ -46,7 +47,7 @@ export const registerUser=async(req,res){
 // controller for user login 
 // POST:/api/users/login
 
-export const loginUser=async(req,res){
+export const loginUser=async(req,res)=>{
         try {
             const {email,password}=req.body;
 
@@ -79,7 +80,7 @@ export const loginUser=async(req,res){
 
 // GET:/api/users/data
 
-export const getUserById=async(req,res){
+export const getUserById=async(req,res)=>{
         try {
           
             const userId=req.userId;
@@ -102,6 +103,20 @@ export const getUserById=async(req,res){
         } catch (error) {
             return res.status(400).json({message:error.message})   
         }
+}
+
+//controller for getting user resume
+// GET: /api/users/resumes
+export const getUserResume=async(req,res)=>{
+    try {
+        const userId=req.userId;
+
+        //return user resume
+        const resumes=await Resume.find({userId})
+        return res.status(200).json({resumes})
+    } catch (error) {
+          return res.status(400).json({message:error.message})  
+    }
 }
 
 
