@@ -1,8 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Hero = () => {
     const [mobileOpen, setMobileOpen] = React.useState(false)
+    const {user}=useSelector(state=>state.auth)
 
 
     return (
@@ -30,11 +32,14 @@ const Hero = () => {
                     </div>
 
                     <div className="hidden md:flex items-center gap-3">
-                        <Link to='/app?state=register' className="bg-green-600 hover:bg-green-500 active:scale-95 transition-all duration-300 px-6 py-2.5 text-slate-50 rounded-full cursor-pointer font-medium shadow-lg shadow-green-600/30 hover:shadow-green-600/50">
+                        <Link to='/app?state=register' className="bg-green-600 hover:bg-green-500 active:scale-95 transition-all duration-300 px-6 py-2.5 text-slate-50 rounded-full cursor-pointer font-medium shadow-lg shadow-green-600/30 hover:shadow-green-600/50 " hidden={user}>
                             Get Started
                         </Link>
-                        <Link to='/app?state=login' className="border border-green-600 hover:bg-green-600/10 active:scale-95 transition-all duration-300 px-6 py-2.5 text-slate-50 rounded-full cursor-pointer font-medium">
+                        <Link to='/app?state=login' className="border border-green-600 hover:bg-green-600/10 active:scale-95 transition-all duration-300 px-6 py-2.5 text-slate-50 rounded-full cursor-pointer font-medium"  hidden={user}>
                             Login
+                        </Link >
+                        <Link to='/app' className='hidden md:block px-8 py-2 bg-green-500  active:scale-95 transition-all rounded-full text-white hover:bg-green-700 '  hidden={!user}>
+                        Dashboard
                         </Link>
                     </div>
 
