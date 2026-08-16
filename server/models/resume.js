@@ -47,7 +47,7 @@ const ResumeSchema=new mongoose.Schema({
            
 
         }
-    ]
+    ],
 },{timestamps:true,minimize:false})
 
 
