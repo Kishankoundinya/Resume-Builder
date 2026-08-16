@@ -6,7 +6,7 @@ const protect=async(req,res,next)=>{
         return res.status(401).json({message:'Unauthorized'}); 
     }
     try {
-        const decoded=Jwt.verify(token,process.env.JET_SECRET)
+        const decoded=jwt.verify(token,process.env.JWT_SECRET)
         req.userId=decoded.userId;
         next();
     } catch (error) {
