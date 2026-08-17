@@ -1,10 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
     const [mobileOpen, setMobileOpen] = React.useState(false)
-    const {user}=useSelector(state=>state.auth)
+    const { user } = useSelector(state => state.auth)
 
 
     return (
@@ -35,11 +36,11 @@ const Hero = () => {
                         <Link to='/app?state=register' className="bg-green-600 hover:bg-green-500 active:scale-95 transition-all duration-300 px-6 py-2.5 text-slate-50 rounded-full cursor-pointer font-medium shadow-lg shadow-green-600/30 hover:shadow-green-600/50 " hidden={user}>
                             Get Started
                         </Link>
-                        <Link to='/app?state=login' className="border border-green-600 hover:bg-green-600/10 active:scale-95 transition-all duration-300 px-6 py-2.5 text-slate-50 rounded-full cursor-pointer font-medium"  hidden={user}>
+                        <Link to='/app?state=login' className="border border-green-600 hover:bg-green-600/10 active:scale-95 transition-all duration-300 px-6 py-2.5 text-slate-50 rounded-full cursor-pointer font-medium" hidden={user}>
                             Login
                         </Link >
-                        <Link to='/app' className='hidden md:block px-8 py-2 bg-green-500  active:scale-95 transition-all rounded-full text-white hover:bg-green-700 '  hidden={!user}>
-                        Dashboard
+                        <Link to='/app' className='hidden md:block px-8 py-2 bg-green-500  active:scale-95 transition-all rounded-full text-white hover:bg-green-700 ' hidden={!user}>
+                            Dashboard
                         </Link>
                     </div>
 
@@ -78,16 +79,28 @@ const Hero = () => {
 
                     <div className="flex flex-col gap-3 mt-8 w-full max-w-xs px-6">
                         <Link
+                            hidden={user}
+                            to='/app?state=register'
                             onClick={() => setMobileOpen(false)}
                             className="bg-green-600 hover:bg-green-500 active:scale-95 transition-all duration-300 px-6 py-3.5 text-slate-50 rounded-full cursor-pointer text-center w-full font-medium shadow-lg shadow-green-600/30"
                         >
                             Get Started
                         </Link>
                         <Link
+                            hidden={user}
+                            to='/app?state=login'
                             onClick={() => setMobileOpen(false)}
                             className="border border-green-600 hover:bg-green-600/10 active:scale-95 transition-all duration-300 px-6 py-3.5 text-slate-50 rounded-full cursor-pointer text-center w-full font-medium"
                         >
                             Login
+                        </Link>
+                        <Link
+                            hidden={!user}
+                            to='/app'
+                            onClick={() => setMobileOpen(false)}
+                            className="bg-green-600 hover:bg-green-500 active:scale-95 transition-all duration-300 px-6 py-3.5 text-slate-50 rounded-full cursor-pointer text-center w-full font-medium shadow-lg shadow-green-600/30"
+                        >
+                            Dashboard
                         </Link>
                     </div>
                 </div>
@@ -103,19 +116,16 @@ const Hero = () => {
                     </div>
                 </a>
 
-             <h1 className="text-center text-4xl leading-tight md:text-4xl mt-3 font-semibold max-w-2xl px-4">
-  Build your dream job with our AI Powered resumes.
-</h1>
+                <h1 className="text-center text-4xl leading-tight md:text-4xl mt-3 font-semibold max-w-2xl px-4">
+                    Build your dream job with our AI Powered resumes.
+                </h1>
                 <p className="text-center text-sm md:text-base/7 text-slate-200 max-w-md mt-2 px-4">
-                   Create,Edit and Download Professional Resume with AI powered Assistance. 
+                    Create,Edit and Download Professional Resume with AI powered Assistance.
                 </p>
 
                 <div className="flex items-center gap-4 mt-8">
-                    <button className='bg-green-600 hover:bg-green-700 text-slate-50 rounded-full px-7 py-3 cursor-pointer'>Get Started</button>
-                    <button className="flex items-center gap-2 border border-green-900 hover:bg-green-950 transition rounded-full px-6 py-3 text-slate-200 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-video size-5" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg>
-                        <span>Watch demo</span>
-                    </button>
+                    <Link to='/app?state=register' className='bg-green-600 hover:bg-green-700 text-slate-50 rounded-full px-7 py-3 cursor-pointer flex items-center gap-2'>Get Started <ArrowRight /></Link>
+
                 </div>
 
                 <p className="text-slate-400 mt-20 md:mt-25">Trusting by leading brands, including</p>

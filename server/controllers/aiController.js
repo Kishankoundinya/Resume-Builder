@@ -17,7 +17,7 @@ export const enhanceProfessionalSummary = async (req, res) => {
             messages: [
                 {
                     role: "system",
-                    content: "You are an expert in resume writing. Your task is to enhance the professional summary of a resume. The summary should be 1-2 sentences also highlight key skills,experience,and carrer objectives.Make it compelling and ATS-friendly. and only return text no options or anything else."
+                    content: "You are an expert in resume writing. Your task is to enhance the professional summary of a resume. The summary should be 1-2 sentences.Make it compelling and ATS-friendly. and only return text no options or anything else. do changes based on my provided summary."
                 },
                 {
                     role: "user",
